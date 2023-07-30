@@ -1,26 +1,38 @@
 #!/usr/bin/python
 
-
-class SubnetOptions:
-    def __init__(self) -> None:
-        self.name = ""
+from dataclasses import dataclass
 
 
-class VpcOptions:
-    def __init__(self) -> None:
-        pass
+@dataclass
+class Subnet:
+    default: bool
+    vpc: str
+    protocol: str
+    cidr_block: str
+    gateway: str
+    exclude_ips: list
+    provider: str
+    enable_dhcp: bool
+    dhcp_options: str
 
 
+@dataclass
 class Vpc:
-    def __init__(self, vpc_options) -> None:
-        self.vpc_options = vpc_options
-
-    def create_subnet(self):
-        pass
-
-    def print_vpc_options(self):
-        pass
+    static_routes: list
+    policy_routes: list
+    vpc_peerings: list
+    enable_external: bool
 
 
 if __name__ == "__main__":
-    subnet_options = SubnetOptions()
+    subnet = Subnet(
+        default=False,
+        vpc="23",
+        protocol="ipv4",
+        cidr_block="10.10.10.0/24",
+        gateway="10.10.10.1",
+        exclude_ips=["10.10.10.1"],
+        provider="10.10.10.2",
+        enable_dhcp=True,
+        dhcp_options="dhcp",
+    )
