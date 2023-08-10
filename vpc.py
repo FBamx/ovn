@@ -36,3 +36,4 @@ if __name__ == "__main__":
         enable_dhcp=True,
         dhcp_options="dhcp",
     )
+    print(repr(subnet))
